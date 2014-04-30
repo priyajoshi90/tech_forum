@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  tcs_id: MyString
+  fm_no: MyString
+  name: MyString
+  address: MyString
+  mobile: MyString
+  role: MyString
+  birthday: 2014-04-30
+  doj: 2014-04-30
+  dor: 2014-04-30
+  empLogin_id: 
+
+two:
+  tcs_id: MyString
+  fm_no: MyString
+  name: MyString
+  address: MyString
+  mobile: MyString
+  role: MyString
+  birthday: 2014-04-30
+  doj: 2014-04-30
+  dor: 2014-04-30
+  empLogin_id: 

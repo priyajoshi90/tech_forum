@@ -1,0 +1,50 @@
+<script>
+$(function() {
+	$( "#datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true
+	});
+});
+</script>
+
+<div id='wel'><h2 align='center' style="color:#2781BA">Welcome to the TechForum!</h2><hr id='welcome'/></div>
+<div class='leftnav'>
+<ul>
+<li><%= link_to 'Add new User', new_emp_login_registration_url %><hr /></li>
+<br /><br />
+<li><%= link_to 'View all Users', '#' %><hr /></li>
+<br /><br />
+<li><%= link_to 'View all Blogs', '#'%><hr /></li>
+<br /><br />
+<li><%= link_to 'View all Discussions', '#' %><hr /></li>
+<br /><br />
+<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+</ul>
+</div>
+<div class='rightnav'>
+<div align='center' class='regForm'>
+<%= form_tag(emp_login_registration_url, :method => 'post') %>
+<sup align='center'><%= devise_error_messages! %></sup>
+<table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
+<tr><td>Name:</td><td><%= text_field(:empMaster, :name, :autofocus => true) %></td></tr>
+<tr><td>Address:</td><td><%= text_area(:empMaster, :address, :rows => '4', :cols => '19') %></td></tr>
+<tr><td>Mobile:</td><td><%= text_field(:empMaster, :mobile) %></td></tr>
+<tr><td>Birthday:</td><td><input type='text' id='datepicker' name='empMaster[birthday]' readonly='readonly' /></td></tr>
+<tr><td>Date Of Joining:</td><td><input type='text' id='datepicker' name='empMaster[doj]' readonly='readonly' /></td></tr>
+<tr><td>Date Of Release:</td><td><input type='text' id='datepicker' name='empMaster[dor]' readonly='readonly' /></td></tr>
+<tr><td>Email:</td><td><%= email_field(:empLogin, :email) %></td</tr>
+<tr><td>Password:</td><td><%= password_field(:empLogin, :password) %></td</tr>
+<tr><td>Confirm Password:</td><td><%= password_field(:empLogin, :password_confirmation) %></td</tr>
+<tr><td>Role:</td><td>
+<select id='empMaster_role' name='empMaster[role]'>
+<option value='normal'>Normal User</option>
+<option value='admin'>Administrator</option>
+</select>
+</td></tr>
+</table>
+<br />
+<div><%= submit_tag "Sign up" %>&nbsp;&nbsp;&nbsp;<input type='button' value='Back to Home' onclick="window.location.href='http://localhost:3000'"</div>
+</form>
+</div>
+</div>
+</div>
