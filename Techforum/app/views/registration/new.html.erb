@@ -1,6 +1,7 @@
 <script>
+
 $(function() {
-	$( "#datepicker" ).datepicker({
+	$( ".datepicker" ).datepicker({
 		changeMonth: true,
 		changeYear: true
 	});
@@ -26,17 +27,17 @@ $(function() {
 <%= form_tag(emp_login_registration_url, :method => 'post') %>
 <sup align='center'><%= devise_error_messages! %></sup>
 <table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
-<tr><td>Name:</td><td><%= text_field(:empMaster, :name, :autofocus => true) %></td></tr>
-<tr><td>Address:</td><td><%= text_area(:empMaster, :address, :rows => '4', :cols => '19') %></td></tr>
-<tr><td>Mobile:</td><td><%= text_field(:empMaster, :mobile) %></td></tr>
-<tr><td>Birthday:</td><td><input type='text' id='datepicker' name='empMaster[birthday]' readonly='readonly' /></td></tr>
-<tr><td>Date Of Joining:</td><td><input type='text' id='datepicker' name='empMaster[doj]' readonly='readonly' /></td></tr>
-<tr><td>Date Of Release:</td><td><input type='text' id='datepicker' name='empMaster[dor]' readonly='readonly' /></td></tr>
-<tr><td>Email:</td><td><%= email_field(:empLogin, :email) %></td</tr>
-<tr><td>Password:</td><td><%= password_field(:empLogin, :password) %></td</tr>
-<tr><td>Confirm Password:</td><td><%= password_field(:empLogin, :password_confirmation) %></td</tr>
+<tr><td>Name:</td><td><%= text_field(:emp_master, :name, :autofocus => true) %></td></tr>
+<tr><td>Address:</td><td><%= text_area(:emp_master, :address, :rows => '4', :cols => '19') %></td></tr>
+<tr><td>Mobile:</td><td><%= text_field(:emp_master, :mobile) %></td></tr>
+<tr><td>Birthday:</td><td><input type='text' class='datepicker' name='emp_master[birthday]' readonly='readonly' /></td></tr>
+<tr><td>Date Of Joining:</td><td><input type='text' class='datepicker' name='emp_master[doj]' readonly='readonly' /></td></tr>
+<tr><td>Date Of Release:</td><td><input type='text' class='datepicker' name='emp_master[dor]' readonly='readonly' /></td></tr>
+<tr><td>Email:</td><td><%= email_field(:emp_login, :email) %></td</tr>
+<tr><td>Password:</td><td><%= password_field(:emp_login, :password) %></td</tr>
+<tr><td>Confirm Password:</td><td><%= password_field(:emp_login, :password_confirmation) %></td</tr>
 <tr><td>Role:</td><td>
-<select id='empMaster_role' name='empMaster[role]'>
+<select id='emp_master_role' name='emp_master[role]'>
 <option value='normal'>Normal User</option>
 <option value='admin'>Administrator</option>
 </select>

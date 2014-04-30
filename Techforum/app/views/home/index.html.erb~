@@ -3,27 +3,27 @@
 
 <ul>
 <% if emp_login_signed_in? %>
-	 <!--<% if  (current_empLogin.empMaster.role.eql?('admin')) %>-->
-		<li><%= link_to 'Add new User', new_empLogin_registration_url %><hr /></li>
+	<% if  (current_emp_login.id.role.eql?('admin')) %>
+		<li><%= link_to 'Add new User', new_emp_login_registration_url %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'View all Users', show_empLogin_registration_url %><hr /></li>
+		<li><%= link_to 'View all Users', show_emp_login_registration_url %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'View all Blogs', '#' %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'View all Discussions', '#' %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
-	<!--<% elsif (empLogin_signed_in? && current_empLogin.empMaster.role.eql?('normal')) %>
-		<li><%= link_to 'New Blog', new_blog_url %><hr /></li>
+	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
+		<li><%= link_to 'New Blog', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'My Blogs', blogs_url %><hr /></li>
+		<li><%= link_to 'My Blogs', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'New Discussion', new_discussion_url %><hr /></li>
+		<li><%= link_to 'New Discussion', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'My Discussions', discussions_url %><hr /></li>
+		<li><%= link_to 'My Discussions', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'Sign Out', destroy_blogger_session_url, method: :delete %><hr /></li>
-	<% end %>-->
+		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+	<% end %>
 
 <% else -%>
 <li><%= link_to 'View Blogs', '#' %><hr /></li>
@@ -64,14 +64,3 @@ A blog (a contraction of the words web log)[1] is a discussion or informational 
 
 
 
-
-
-
-<% if member_signed_in? %>
-<h3>You have successfully signed in <%= current_member.username %></h3>
-<%= link_to 'Sign Out', destroy_member_session_path, :method => :delete  %>
-<% else %>
-<h1> Welcome to Rails community </h1>
-<%= link_to 'Sign Up', new_member_registration_path, :method => :get %>
-<%= link_to 'Sign In', new_member_session_path, :method => :get %>
-<% end %>

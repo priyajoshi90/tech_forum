@@ -26,7 +26,7 @@ def create
 if @emp_login.errors.blank?
 
 @emp_login.save
-@emp_master.emp_login = @emp_login
+@emp_master.empLogin_id = @emp_login
 @emp_master.save
 redirect_to root_path
 else
