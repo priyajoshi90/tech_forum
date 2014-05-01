@@ -10,7 +10,7 @@ class CreateEmpMasters < ActiveRecord::Migration
       t.date :birthday
       t.date :doj
       t.date :dor
-      t.references :empLogin, index: true
+      t.references :emp_login, index: true
 
       t.timestamps
     end

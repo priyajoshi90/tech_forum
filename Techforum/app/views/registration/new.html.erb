@@ -13,13 +13,13 @@ $(function() {
 <ul>
 <li><%= link_to 'Add new User', new_emp_login_registration_url %><hr /></li>
 <br /><br />
-<li><%= link_to 'View all Users', '#' %><hr /></li>
+<li><%= link_to 'View all Users', new_emp_login_registration_url  %><hr /></li>
 <br /><br />
-<li><%= link_to 'View all Blogs', '#'%><hr /></li>
+<li><%= link_to 'View Forum', '#'%><hr /></li>
 <br /><br />
-<li><%= link_to 'View all Discussions', '#' %><hr /></li>
+<!-- <li><%= link_to 'View all Discussions', '#' %><hr /></li>
 <br /><br />
-<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+ --><li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 </ul>
 </div>
 <div class='rightnav'>
@@ -28,6 +28,8 @@ $(function() {
 <sup align='center'><%= devise_error_messages! %></sup>
 <table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
 <tr><td>Name:</td><td><%= text_field(:emp_master, :name, :autofocus => true) %></td></tr>
+<tr><td>TCS Id:</td><td><%= text_field(:emp_master, :tcs_id) %></td></tr>
+<tr><td>FM No:</td><td><%= text_field(:emp_master, :fm_no) %></td></tr>
 <tr><td>Address:</td><td><%= text_area(:emp_master, :address, :rows => '4', :cols => '19') %></td></tr>
 <tr><td>Mobile:</td><td><%= text_field(:emp_master, :mobile) %></td></tr>
 <tr><td>Birthday:</td><td><input type='text' class='datepicker' name='emp_master[birthday]' readonly='readonly' /></td></tr>
