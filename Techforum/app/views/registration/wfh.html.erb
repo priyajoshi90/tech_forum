@@ -1,0 +1,41 @@
+<script>
+
+$(function() {
+	$( ".datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true
+	});
+});
+</script>
+
+<div id='wel'><h2 align='center' style="color:#2781BA">Welcome to the TechForum!</h2><hr id='welcome'/></div>
+<div class='leftnav'>
+<ul>
+<li><%= link_to 'My Profile', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'Apply WFH', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'Apply Leave', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'Firm Projects', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'Forum', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+</ul>
+</div>
+<div class='rightnav'>
+<div align='center' class='regForm'>
+<sup align='center'>APPLY WFH</sup>
+<table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
+<tr><td>Employee ID:</td><td><%= emp_login.emp_master.tcs_id %></td></tr>
+<tr><td>From:</td><td><input type='text' class='datepicker' name='wfh[fdate]' readonly='readonly' /></td></tr>
+<tr><td>To:</td><td><input type='text' class='datepicker' name='wfh[tdate]' readonly='readonly' /></td></tr>
+<tr><td>Comments:</td><td><%= text_field(:wfh, :comments) %></td></tr>
+</table>
+<br />
+<div><%= submit_tag "Apply" %>&nbsp;&nbsp;&nbsp;<input type='button' value='Back to Home' onclick="window.location.href='http://localhost:3000'"</div>
+</form>
+</div>
+</div>
+</div>

@@ -5,11 +5,14 @@ Techforum::Application.routes.draw do
   # get '/emp_logins/:id/edit', to: 'registration#edit', as: 'edit_emp_login_registration'
   # get 'emp_logins/show' => 'registrations#show'
   # get '/emp_logins/show', to: 'registration#show', as: 'show_emp_login_registration'
-        
+  resources :wfh
+  resources :leaves    
   end
 
   devise_scope :emp_login do
     get '/emp_logins/show' => 'registration#show'
+    get '/emp_logins/wfh' => 'wfh#new'
+    # get '/wfhs'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

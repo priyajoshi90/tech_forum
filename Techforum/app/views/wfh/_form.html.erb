@@ -1,0 +1,26 @@
+<br />
+<%= form_for(@wfh) do |f| %>
+  <% if @current_emp_login.wfh.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@wfh.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @wfh.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :comments %><br />
+    <%= f.text_field :comments %>
+  </div>
+<!-- <table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
+<tr><td>Employee ID:</td><td><%= current_emp_login.emp_master.tcs_id %></td></tr>
+<tr><td>From:</td><td><input type='text' class='datepicker' name='wfh[fdate]' readonly='readonly' /></td></tr>
+<tr><td>To:</td><td><input type='text' class='datepicker' name='wfh[tdate]' readonly='readonly' /></td></tr>
+<tr><td>Comments:</td><td><%= text_field(:wfh, :comments) %></td></tr>
+</table>
+<br /> -->
+<div class="actions"><%= f.submit "Apply" %>
+<% end %>

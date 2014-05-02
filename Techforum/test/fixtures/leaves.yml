@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  fdate: 2014-05-02
+  tdate: 2014-05-02
+  comments: MyString
+  emp_login_id: 
+
+two:
+  fdate: 2014-05-02
+  tdate: 2014-05-02
+  comments: MyString
+  emp_login_id: 

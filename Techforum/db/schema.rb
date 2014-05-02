@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140430063905) do
+ActiveRecord::Schema.define(version: 20140502105548) do
 
   create_table "emp_logins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140430063905) do
     t.datetime "updated_at"
   end
 
-  add_index "emp_logins", ["email"], name: "index_emp_logins_on_email", unique: true, using: :btree
-  add_index "emp_logins", ["reset_password_token"], name: "index_emp_logins_on_reset_password_token", unique: true, using: :btree
+  add_index "emp_logins", ["email"], name: "index_emp_logins_on_email", unique: true
+  add_index "emp_logins", ["reset_password_token"], name: "index_emp_logins_on_reset_password_token", unique: true
 
   create_table "emp_masters", force: true do |t|
     t.string   "tcs_id"
@@ -46,6 +46,28 @@ ActiveRecord::Schema.define(version: 20140430063905) do
     t.datetime "updated_at"
   end
 
-  add_index "emp_masters", ["emp_login_id"], name: "index_emp_masters_on_emp_login_id", using: :btree
+  add_index "emp_masters", ["emp_login_id"], name: "index_emp_masters_on_emp_login_id"
+
+  create_table "leaves", force: true do |t|
+    t.date     "fdate"
+    t.date     "tdate"
+    t.string   "comments"
+    t.integer  "emp_login_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "leaves", ["emp_login_id"], name: "index_leaves_on_emp_login_id"
+
+  create_table "wfhs", force: true do |t|
+    t.date     "fdate"
+    t.date     "tdate"
+    t.string   "comments"
+    t.integer  "emp_login_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "wfhs", ["emp_login_id"], name: "index_wfhs_on_emp_login_id"
 
 end

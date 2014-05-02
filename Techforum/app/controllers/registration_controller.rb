@@ -1,6 +1,6 @@
 
 class RegistrationController < Devise::RegistrationsController
-prepend_before_filter :require_no_authentication, :except => [ :index, :new, :create, :edit, :show, :update ]
+prepend_before_filter :require_no_authentication, :except => [ :index, :new, :create, :edit, :show, :update, :wfh, :leave ]
 
 def new
  	if emp_login_signed_in? && (current_emp_login.emp_master.role.eql?('admin'))
@@ -79,4 +79,7 @@ def update
 		self.fetch(@emp_login, @emp_master)
 		self.update_emp_login(@emp_login, @emp_master)		
 end
+# def wfh
+# 		@wfh=Wfh.new
+# end
 end

@@ -1,0 +1,52 @@
+class WfhController < ApplicationController
+
+
+  def index
+	if emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')
+		@wfhs = current_emp_login.wfhs
+	elsif emp_login_signed_in? and current_emp_login.emp_master.role.eql?("admin")
+		@wfhs = Wfh.all
+	else
+		@wfhs = Wfh.all
+	end
+  end
+def new
+		@wfh = Wfh.new
+end
+def create
+	@emp_login = current_emp_login
+	@wfh = Wfh.new(params[:wfh])
+	@wfh.emp_login = @emp_login
+		if @wfh.save
+			redirect_to @wfh, notice: 'Request for WFH was successfully created.'
+		else
+			render 'new', notice: 'could not save the request, please try again later!'
+		end
+
+end
+def show
+	@wfh = Wfh.find(params[:id])
+  end
+
+  def edit
+  	@wfh = Wfh.find(params[:id])
+  end
+
+  def update
+	@wfh = Wfh.find(params[:id])
+	if @wfh.update_attributes(params[:wfh])
+		redirect_to @wfh, notice: 'Request was updated successfully.'
+	else
+		render 'edit', notice: 'Update failed!'
+	end
+  end
+
+  def destroy
+	@wfh = Wfh.find(params[:id])
+	if @wfh.destroy
+		redirect_to wfhs_url, notice: 'Request was deleted successfully.'
+	else
+		render 'index', notice: 'Request deletion failed!'
+	end
+  end
+end

@@ -16,7 +16,7 @@
 	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
 		<li><%= link_to 'My Profile', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'Apply WFH', '#' %><hr /></li>
+		<li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'Apply Leave', '#' %><hr /></li>
 		<br /><br />
