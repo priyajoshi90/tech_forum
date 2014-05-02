@@ -3,32 +3,40 @@
 
 <ul>
 <% if emp_login_signed_in? %>
-	<% if  (current_emp_login.id.role.eql?('admin')) %>
-		<li><%= link_to 'Add new User', new_emp_login_registration_url %><hr /></li>
+		 <% if  (current_emp_login.emp_master.role.eql?('admin')) %>
+	<li><%= link_to 'Add new User', new_emp_login_registration_url %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'View all Users', show_emp_login_registration_url %><hr /></li>
+		<li><%= link_to 'View all Users',emp_logins_show_url %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'View all Blogs', '#' %><hr /></li>
+		<li><%= link_to 'View Forum', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'View all Discussions', '#' %><hr /></li>
-		<br /><br />
+		<!-- <li><%= link_to 'View all Discussions', '#' %><hr /></li>
+		br /><br /> -->
 		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
-		<li><%= link_to 'New Blog', '#' %><hr /></li>
+		<li><%= link_to 'My Profile', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'My Blogs', '#' %><hr /></li>
+		<li><%= link_to 'Apply WFH', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'New Discussion', '#' %><hr /></li>
+		<li><%= link_to 'Apply Leave', '#' %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'My Discussions', '#' %><hr /></li>
+		<li><%= link_to 'Firm Projects', '#' %><hr /></li>
+		<br /><br />
+		<!-- <li><%= link_to 'New Post', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'My Posts', '#' %><hr /></li>
+		<br /><br />
+		<li><%= link_to 'New Reply', '#' %><hr /></li>
+		<br /><br /> -->
+		<li><%= link_to 'Forum', '#' %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
-	<% end %>
+	<% end %> 
 
 <% else -%>
-<li><%= link_to 'View Blogs', '#' %><hr /></li>
-<br /><br />
-<li><%= link_to 'View Discussions', '#' %><hr /></li>
+<li><%= link_to 'View Forum', '#' %><hr /></li>
+<!-- <br /><br />
+<li><%= link_to 'View Discussions', '#' %><hr /></li> -->
 <br /><br />
 <li><%= link_to 'Sign In', new_emp_login_session_path %><hr /></li>
 <% end %>
@@ -36,10 +44,9 @@
 </div>
 <div class='rightnav'>
 <div><p id="notice"><%= notice %></p></div>
-<div class='logo'><%= image_tag('guest-blogging.jpg') %></div>
+<div class='logo'><%= image_tag('forum.jpeg') %></div>
 <div class='main'>
-<p>
-A blog (a contraction of the words web log)[1] is a discussion or informational site published on the World Wide Web and consisting of discrete entries ("posts") typically displayed in reverse chronological order (the most recent post appears first). Until 2009 blogs were usually the work of a single individual, occasionally of a small group, and often covered a single subject. 
+<p> 
 </p>
 </div>
 </div>

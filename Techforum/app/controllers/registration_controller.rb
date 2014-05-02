@@ -1,14 +1,14 @@
+
 class RegistrationController < Devise::RegistrationsController
 prepend_before_filter :require_no_authentication, :except => [ :index, :new, :create, :edit, :show, :update ]
 
 def new
- if emp_login_signed_in? && (current_emp_login.emp_master.role.eql?('admin'))
-
-	@emp_login= EmpLogin.new
-	@emp_master = EmpMaster.new
+ 	if emp_login_signed_in? && (current_emp_login.emp_master.role.eql?('admin'))
+		@emp_login= EmpLogin.new
+		@emp_master = EmpMaster.new
 	else
 			redirect_to root_url , notice: 'You are not authorized to perform this action .'	
-		end
+	end
 end
 def create
 		@emp_login = EmpLogin.new
@@ -63,8 +63,12 @@ def save(emp_login,emp_master)
 		end
 end
 def show
-		@emp_logins = EmpLogin.paginate page: params[:page], order: 'created_at desc',
-      per_page: 5
+		#@emp_logins = EmpLogin.paginate(:page => params[:page], :order => 'created_at desc',
+      #:per_page => 5)
+       		
+  		#@emp_logins = EmpLogin.search(params[:search], params[:page])
+		@emp_logins = EmpLogin.paginate page: params[:page],per_page: 5
+		
 end
 def edit
 		@emp_login = EmpLogin.find(params[:id])
