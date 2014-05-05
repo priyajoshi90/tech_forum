@@ -16,9 +16,9 @@
 	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
 		<li><%= link_to 'My Profile', view_emp_login_registration_url %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
+		<li><%= link_to 'Apply WFH', wfhs_url %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'Apply Leave', 'emp_logins_leave_url' %><hr /></li>
+		<li><%= link_to 'Apply Leave', emp_logins_leave_url %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'Firm Projects', '#' %><hr /></li>
 		<br /><br />
