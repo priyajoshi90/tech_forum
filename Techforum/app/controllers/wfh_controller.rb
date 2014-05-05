@@ -1,6 +1,6 @@
 class WfhController < ApplicationController
 
-
+before_filter :authenticate_emp_login!, :except => [:index, :show]
   def index
 	if emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')
 		@wfhs = current_emp_login.wfhs
@@ -17,6 +17,8 @@ def create
 	@emp_login = current_emp_login
 	@wfh = Wfh.new(params[:wfh])
 	@wfh.emp_login = @emp_login
+	# # @emp_login = EmpLogin.find(params[:emp_login_id])
+	#  @wfh = @emp_login.wfhs.create(params[:wfh])
 		if @wfh.save
 			redirect_to @wfh, notice: 'Request for WFH was successfully created.'
 		else
