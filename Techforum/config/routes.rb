@@ -12,6 +12,11 @@ Techforum::Application.routes.draw do
   devise_scope :emp_login do
     get '/emp_logins/show' => 'registration#show'
     get '/emp_logins/wfh' => 'wfh#new'
+    post '/emp_logins/wfh' => 'wfh#create'
+    get '/emp_logins/leave' => 'leave#new'
+    post '/emp_logins/leave' => 'leave#create'
+    get '/emp_logins/view', to: 'registration#view', as: 'view_emp_login_registration' 
+    put '/emp_logins', to: 'registration#update', as: 'update_emp_login_registration'
     # get '/wfhs'
   end
   # The priority is based upon order of creation: first created -> highest priority.

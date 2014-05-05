@@ -1,6 +1,6 @@
 
 class RegistrationController < Devise::RegistrationsController
-prepend_before_filter :require_no_authentication, :except => [ :index, :new, :create, :edit, :show, :update ]
+prepend_before_filter :require_no_authentication, :except => [ :index, :new, :create, :edit, :show, :view, :update, :wfh, :leave ]
 
 def new
  	if emp_login_signed_in? && (current_emp_login.emp_master.role.eql?('admin'))
@@ -70,8 +70,13 @@ def show
 		@emp_logins = EmpLogin.paginate page: params[:page],per_page: 5
 		
 end
+def view
+		
+		@emp_login = current_emp_login
+		render :text => @emp_login.email
+end
 def edit
-		@emp_login = EmpLogin.find(params[:id])
+		@emp_login = current_emp_login
 end
 def update
 		@emp_login =  EmpLogin.new
@@ -79,4 +84,44 @@ def update
 		self.fetch(@emp_login, @emp_master)
 		self.update_emp_login(@emp_login, @emp_master)		
 end
+def update_emp_login(emp_login, emp_master)
+		@emp_login = (EmpLogin.where(email: emp_login.email))[0]
+		@emp_master = emp_master
+		@emp_master.id = @emp_login.emp_master.id
+		@emp_master.emp_login = emp_login
+		@emp_master.valid?
+
+
+		if !(@emp_master.emp_login.password.eql?("") or @emp_master.emp_login.password == nil) and (@emp_master.emp_login.password.eql?(@emp_master.emp_login.password_confirmation))
+
+			@emp_login.password = EmpLogin.new(:password => @emp_master.emp_login.password).encrypted_password
+
+
+			if @emp_master.errors.blank?
+				if EmpMaster.update(@emp_master.id, :name => @emp_master.name, :tcs_id => @emp_master.tcs_id, :fm_no => @emp_master.fm_no, :address => @emp_master.address, :mobile => @emp_master.mobile, :birthday => @emp_master.birthday, :doj => @emp_master.doj, :dor => @emp_master.dor, :role => @emp_master.role) and @emp_login.update_attribute(:encrypted_password, @emp_login.password)
+					redirect_to show_emp_login_registration_url(@emp_login), notice: "Employee details and password updated successfully"
+				else
+					redirect_to view_emp_login_registration_url(@emp_login), notice: "Couldn't update employee details"				
+				end
+			else
+				redirect_to view_emp_login_registration_url(@emp_login), notice: "Couldn't update employee details"
+			end
+		elsif @emp_master.emp_login.password.eql?("")
+			if @emp_master.errors.blank?
+				if EmpMaster.update(@emp_master.id, :name => @emp_master.name, :tcs_id => @emp_master.tcs_id, :fm_no => @emp_master.fm_no, :address => @emp_master.address, :mobile => @emp_master.mobile, :birthday => @emp_master.birthday, :doj => @emp_master.doj, :dor => @emp_master.dor, :role => @emp_master.role)
+					redirect_to root_url(@emp_login), notice: "Employee details updated successfully"
+				else
+					redirect_to view_emp_login_registration_url(@emp_login), notice: "Couldn't update employee details"
+				end
+			else
+				redirect_to view_emp_login_registration_url(@emp_login), notice: "Couldn't update employee details"
+			end
+
+		else
+			redirect_to view_emp_login_registration_url(@emp_login), notice: 'Password and confirm password should be same!'
+		end
+	end
+# def wfh
+# 		@wfh=Wfh.new
+# end
 end

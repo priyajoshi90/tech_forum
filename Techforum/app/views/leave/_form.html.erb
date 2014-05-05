@@ -1,0 +1,22 @@
+<br />
+<%= form_for(emp_logins_leave_path) do |f| %>
+  <% if current_emp_login.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@leave.errors.count, "error") %> prohibited this request from being saved:</h2>
+
+      <ul>
+      <% @leave.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+<table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
+<tr><td>Employee ID:</td><td><%= current_emp_login.emp_master.tcs_id %></td></tr>
+<tr><td>From:</td><td><input type='text' class='datepicker' name='leave[fdate]' readonly='readonly' /></td></tr>
+<tr><td>To:</td><td><input type='text' class='datepicker' name='leave[tdate]' readonly='readonly' /></td></tr>
+<tr><td>Comments:</td><td><%= text_field(:leave, :comments) %></td></tr>
+</table>
+<br />
+<div class="actions"><%= f.submit "Apply" %>
+<% end %>

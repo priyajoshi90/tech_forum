@@ -14,7 +14,7 @@
 		br /><br /> -->
 		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
-		<li><%= link_to 'My Profile', view_emp_login_registration_url %><hr /></li>
+		<li><%= link_to 'My Profile', '#' %><hr /></li>
 		<br /><br />
 		<li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
 		<br /><br />
@@ -42,32 +42,17 @@
 <% end %>
 </ul>
 </div>
-<div class='rightnav'>
-<div><p id="notice"><%= notice %></p></div>
-<div class='logo'><%= image_tag('forum.jpeg') %></div>
+<div class = 'rightnav'>
 <div class='main'>
-<p> 
-</p>
+	<p id="notice"><%= notice %></p>
+	<% if emp_login_signed_in? and @leaves != nil %>
+		<% @leaves.each do |leave| %>
+			
+		<% end %>		
+	<% end %>
+</div>
+
+	<br />
+	<%= link_to 'New Leave', new_leave_path %>
 </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

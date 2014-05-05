@@ -1,0 +1,55 @@
+<script>
+
+$(function() {
+	$( ".datepicker" ).datepicker({
+		changeMonth: true,
+		changeYear: true
+	});
+});
+</script>
+
+<div id='wel'><h2 align='center' style="color:#2781BA">Welcome to the TechForum!</h2><hr id='welcome'/></div>
+<div class='leftnav'>
+<ul>
+<li><%= link_to 'My Profile', view_emp_login_registration_url %><hr /></li>
+<br /><br />
+<li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
+<br /><br />
+<li><%= link_to 'Apply Leave', '#' %><hr /></li>
+<br /><br />
+<li><%= link_to 'Firm Projects', '#' %><hr /></li>
+<br /><br />
+<li><%= link_to 'Forum', '#' %><hr /></li>
+<br /><br />
+<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+</ul>
+</div>
+<div class='rightnav'>
+<div align='center' class='regForm'>
+<%= form_tag(update_emp_login_registration_url, :method => 'put') %>
+<sup align='center'><%= devise_error_messages! %></sup>
+<table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
+<tr><td>Name:</td><td><%= text_field(:emp_master, :name, :autofocus => true, :value => @emp_login.emp_master.name) %></td></tr>
+<tr><td>TCS Id:</td><td><%= text_field(:emp_master, :tcs_id, :value => @emp_login.emp_master.tcs_id) %></td></tr>
+<tr><td>FM No:</td><td><%= text_field(:emp_master, :fm_no, :value => @emp_login.emp_master.fm_no) %></td></tr>
+<tr><td>Address:</td><td><%= text_area(:emp_master, :address, :rows => '4', :cols => '19', :value => @emp_login.emp_master.address) %></td></tr>
+<tr><td>Mobile:</td><td><%= text_field(:emp_master, :mobile, :value => @emp_login.emp_master.mobile) %></td></tr>
+<tr><td>Birthday:</td><td><input type='text' class='datepicker' name='emp_master[birthday]' readonly='readonly' value='<%= @emp_login.emp_master.birthday %>'/></td></tr>
+<tr><td>Date Of Joining:</td><td><input type='text' class='datepicker' name='emp_master[doj]' readonly='readonly' value='<%= @emp_login.emp_master.doj %>' /></td></tr>
+<tr><td>Date Of Release:</td><td><input type='text' class='datepicker' name='emp_master[dor]' readonly='readonly' value='<%= @emp_login.emp_master.dor %>' /></td></tr>
+<tr><td>Email:</td><td><%= email_field(:emp_login, :email,:readonly => :readonly) %></td</tr>
+<tr><td>Password:</td><td><%= password_field(:emp_login, :password) %></td</tr>
+<tr><td>Confirm Password:</td><td><%= password_field(:emp_login, :password_confirmation) %></td</tr>
+<tr><td>Role:</td><td>
+<select id='emp_master_role' name='emp_master[role]'>
+<option value='normal' <% if @emp_login.emp_master.role.eql?("user") %> selected='selected'<% end %>>Normal User</option>
+<option value='admin' <% if @emp_login.emp_master.role.eql?("admin") %> selected='selected'<% end %>>Administrator</option>
+</select>
+</td></tr>
+</table>
+<br />
+<div><%= submit_tag "Edit Profile" %>&nbsp;&nbsp;&nbsp;<input type='button' value='Back to Home' onclick="window.location.href='http://localhost:3000'"</div>
+</form>
+</div>
+</div>
+</div>
