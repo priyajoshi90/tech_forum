@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502105548) do
+ActiveRecord::Schema.define(version: 20140506042759) do
 
   create_table "emp_logins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -28,8 +28,8 @@ ActiveRecord::Schema.define(version: 20140502105548) do
     t.datetime "updated_at"
   end
 
-  add_index "emp_logins", ["email"], name: "index_emp_logins_on_email", unique: true, using: :btree
-  add_index "emp_logins", ["reset_password_token"], name: "index_emp_logins_on_reset_password_token", unique: true, using: :btree
+  add_index "emp_logins", ["email"], name: "index_emp_logins_on_email", unique: true
+  add_index "emp_logins", ["reset_password_token"], name: "index_emp_logins_on_reset_password_token", unique: true
 
   create_table "emp_masters", force: true do |t|
     t.string   "tcs_id"
@@ -46,7 +46,31 @@ ActiveRecord::Schema.define(version: 20140502105548) do
     t.datetime "updated_at"
   end
 
-  add_index "emp_masters", ["emp_login_id"], name: "index_emp_masters_on_emp_login_id", using: :btree
+  add_index "emp_masters", ["emp_login_id"], name: "index_emp_masters_on_emp_login_id"
+
+  create_table "empteches", force: true do |t|
+    t.string   "empid"
+    t.integer  "techmaster_id"
+    t.integer  "emp_login_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "empteches", ["emp_login_id"], name: "index_empteches_on_emp_login_id"
+  add_index "empteches", ["techmaster_id"], name: "index_empteches_on_techmaster_id"
+
+  create_table "forums", force: true do |t|
+    t.string   "qid"
+    t.string   "question"
+    t.string   "type"
+    t.integer  "emptech_id"
+    t.integer  "emp_login_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "forums", ["emp_login_id"], name: "index_forums_on_emp_login_id"
+  add_index "forums", ["emptech_id"], name: "index_forums_on_emptech_id"
 
   create_table "leaves", force: true do |t|
     t.date     "fdate"
@@ -57,7 +81,13 @@ ActiveRecord::Schema.define(version: 20140502105548) do
     t.datetime "updated_at"
   end
 
-  add_index "leaves", ["emp_login_id"], name: "index_leaves_on_emp_login_id", using: :btree
+  add_index "leaves", ["emp_login_id"], name: "index_leaves_on_emp_login_id"
+
+  create_table "techmasters", force: true do |t|
+    t.string   "tech"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "wfhs", force: true do |t|
     t.date     "fdate"
@@ -68,6 +98,6 @@ ActiveRecord::Schema.define(version: 20140502105548) do
     t.datetime "updated_at"
   end
 
-  add_index "wfhs", ["emp_login_id"], name: "index_wfhs_on_emp_login_id", using: :btree
+  add_index "wfhs", ["emp_login_id"], name: "index_wfhs_on_emp_login_id"
 
 end

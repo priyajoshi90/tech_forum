@@ -1,5 +1,7 @@
 Techforum::Application.routes.draw do
 
+  resources :forums
+
   devise_for :emp_logins, :controllers => {:registrations => 'registration'} do
 	resources :emp_masters do
   end

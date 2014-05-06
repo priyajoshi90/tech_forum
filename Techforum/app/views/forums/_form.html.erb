@@ -1,0 +1,38 @@
+<br />
+<%= form_for(@forum) do |f| %>
+  <% if current_emp_login.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@forum.errors.count, "error") %> prohibited this forum from being saved:</h2>
+
+      <ul>
+      <% @forum.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <div class="field">
+    <%= f.label :qid %><br>
+    <%= f.text_field :qid %>
+  </div>
+  <div class="field">
+    <%= f.label :question %><br>
+    <%= f.text_field :question %>
+  </div>
+  <div class="field">
+    <%= f.label :type %><br>
+    <%= f.text_field :type %>
+  </div>
+  <div class="field">
+    <%= f.label :emptech %><br>
+    <%= f.text_field :emptech %>
+  </div>
+  <div class="field">
+    <%= f.label :emp_login %><br>
+    <%= f.text_field :emp_login %>
+  </div>
+  <div class="actions">
+    <%= f.submit "Post"%>
+  </div>
+<% end %>

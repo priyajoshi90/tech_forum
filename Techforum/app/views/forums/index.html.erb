@@ -1,0 +1,35 @@
+<h1>Listing forums</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Qid</th>
+      <th>Question</th>
+      <th>Type</th>
+      <th>Emptech</th>
+      <th>Emp login</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @forums.each do |forum| %>
+      <tr>
+        <td><%= forum.qid %></td>
+        <td><%= forum.question %></td>
+        <td><%= forum.type %></td>
+        <td><%= forum.emptech %></td>
+        <td><%= forum.emp_login %></td>
+        <td><%= link_to 'Show', forum %></td>
+        <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
+        <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Forum', new_forum_path %>

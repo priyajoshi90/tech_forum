@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  qid: MyString
+  question: MyString
+  type: 
+  emptech_id: 
+  emp_login_id: 
+
+two:
+  qid: MyString
+  question: MyString
+  type: 
+  emptech_id: 
+  emp_login_id: 
