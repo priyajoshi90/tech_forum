@@ -1,17 +1,13 @@
 Techforum::Application.routes.draw do
-
-  resources :forums
-
+  resources :techmaster do
+    resources :emptech
+  end
   devise_for :emp_logins, :controllers => {:registrations => 'registration'} do
-	resources :emp_masters do
-  end
-  # get '/emp_logins/:id/edit', to: 'registration#edit', as: 'edit_emp_login_registration'
-  # get 'emp_logins/show' => 'registrations#show'
-  # get '/emp_logins/show', to: 'registration#show', as: 'show_emp_login_registration'
-  resources :wfhs do
-  end
-  resources :leaves do
-  end   
+	resources :emp_masters
+  resources :wfhs
+  resources :leaves
+  resources :emptech 
+  resources :forums   
   end
 
   devise_scope :emp_login do
@@ -22,7 +18,8 @@ Techforum::Application.routes.draw do
     post '/emp_logins/leave' => 'leave#create'
     get '/emp_logins/view', to: 'registration#view', as: 'view_emp_login_registration' 
     put '/emp_logins', to: 'registration#update', as: 'update_emp_login_registration'
-    # get '/emp_logins/wfh' => 'wfh#new'
+    get '/emp_logins/forum' => 'forums#new'
+    post '/emp_logins/forum' => 'forums#create'
 
     # get '/wfhs'
   end
