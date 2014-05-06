@@ -15,7 +15,7 @@
 <table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
 <tr><td>Qid:</td><td><input type='text' name='forum[qid]' /></td></tr>
 <tr><td>Question:</td><td><input type='text' name='forum[question]' /></td></tr>
-<tr><td>Type:</td><td><%= select_tag('forum[forum_type]', options_for_select(%w[Challenge Issue Question])) %></td></tr>
+<tr><td>Type:</td><td><%= select_tag(forum[forum_type], options_for_select(%w[Challenge Issue Question])) %></td></tr>
 <tr><td>Technology:</td><td></td></tr>
 <tr><td>Employee Id:</td><td><input type='text' value= '<%= current_emp_login.emp_master.tcs_id %>'></td></tr>
 </table>
