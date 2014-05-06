@@ -73,7 +73,7 @@ end
 def view
 		
 		@emp_login = current_emp_login
-		render :text => @emp_login.email
+		#render :text => @emp_login.email
 end
 def edit
 		@emp_login = current_emp_login

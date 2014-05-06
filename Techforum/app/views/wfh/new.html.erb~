@@ -26,6 +26,7 @@ $(function() {
 </div>
 <div class='rightnav'>
 <div align='center' class='regForm'>
+
 <%= render 'form' %>
 
 

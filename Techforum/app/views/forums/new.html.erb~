@@ -1,13 +1,3 @@
-<script>
-
-$(function() {
-	$( ".datepicker" ).datepicker({
-		changeMonth: true,
-		changeYear: true
-	});
-});
-</script>
-
 <div id='wel'><h2 align='center' style="color:#2781BA">Welcome to the TechForum!</h2><hr id='welcome'/></div>
 <div class='leftnav'>
 <ul>
@@ -21,7 +11,7 @@ $(function() {
 		<br /><br />
 		<li><%= link_to 'Forum', '#' %><hr /></li>
 		<br /><br />
-		
+		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 </ul>
 </div>
 <div class='rightnav'>

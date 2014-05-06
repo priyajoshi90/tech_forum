@@ -12,7 +12,7 @@
 		<br /><br />
 		<!-- <li><%= link_to 'View all Discussions', '#' %><hr /></li>
 		br /><br /> -->
-		
+		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
 		<li><%= link_to 'My Profile', '#' %><hr /></li>
 		<br /><br />
@@ -30,7 +30,7 @@
 		<br /><br /> -->
 		<li><%= link_to 'Forum', '#' %><hr /></li>
 		<br /><br />
-		
+		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 	<% end %> 
 
 <% else -%>
@@ -42,16 +42,17 @@
 <% end %>
 </ul>
 </div>
-<div class='rightnav'>
+<div class = 'rightnav'>
 <div class='main'>
-<p id="notice"><%= notice %></p>
-<h1 align='center'>Editing Wfh</h1><hr />
-<br />
-<% if emp_login_signed_in? and (current_emp_login.id.to_s.eql?(@wfh.emp_login_id.to_s)-%>
-<%= render 'form' %>
-<% end -%>
-<%= link_to 'Show', @wfh %> |
-<%= link_to 'Back', wfhs_path %>
-</div>
+	<p id="notice"><%= notice %></p>
+	<% if emp_login_signed_in? and @wfhs != nil %>
+		<% @wfhs.each do |wfh| %>
+			
+		<% end %>		
+	<% end %>
 </div>
 
+	<br />
+	<%= link_to 'New wfh', new_wfh_path %>
+</div>
+</div>

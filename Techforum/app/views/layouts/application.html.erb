@@ -18,6 +18,7 @@ response.headers["Expires"] = "0" # Proxies.
 <div class='content'>
 <% if emp_login_signed_in? -%>
 <div id='user'>Welcome: <%= current_emp_login.emp_master.name %></div>
+<div id='sign_out'><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %></div>
 <% else -%>
 <div id='user'>Welcome: Guest</div>
 <% end -%>

@@ -10,9 +10,8 @@
 		<br /><br />
 		<li><%= link_to 'View Forum', '#' %><hr /></li>
 		<br /><br />
-		<!-- <li><%= link_to 'View all Discussions', '#' %><hr /></li>
-		br /><br /> -->
-		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+		
+		
 	<% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
 		<li><%= link_to 'My Profile', view_emp_login_registration_url %><hr /></li>
 		<br /><br />
@@ -24,7 +23,7 @@
 		<br /><br />
 		<li><%= link_to 'Forum', forums_url %><hr /></li>
 		<br /><br />
-		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+		
 	<% end %> 
 
 <% else -%>

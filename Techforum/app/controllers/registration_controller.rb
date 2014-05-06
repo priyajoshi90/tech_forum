@@ -76,7 +76,7 @@ def view
 		#render :text => @emp_login.email
 end
 def edit
-		@emp_login = current_emp_login
+		@emp_master = EmpMaster.where(role: user)
 end
 def update
 		@emp_login =  EmpLogin.new
