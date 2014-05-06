@@ -1,5 +1,5 @@
 <br />
-<%= form_for(@forum) do |f| %>
+<%= form_for(emp_logins_forum_path) do |f| %>
   <% if current_emp_login.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@forum.errors.count, "error") %> prohibited this forum from being saved:</h2>
@@ -12,25 +12,26 @@
     </div>
   <% end %>
  
-  <div class="field">
+<!--   <div class="field">
     <%= f.label :qid %><br>
     <%= f.text_field :qid %>
-  </div>
+  </div> -->
+
   <div class="field">
-    <%= f.label :question %><br>
+    <%= f.label :Query %><br>
     <%= f.text_field :question %>
   </div>
   <div class="field">
-    <%= f.label :type %><br>
-    <%= f.text_field :type %>
+    <%= f.label :Type %><br>
+    <%= f.select :type, options_for_select(%w[Challenge Issue Question]) %>
   </div>
   <div class="field">
-    <%= f.label :emptech %><br>
-    <%= f.text_field :emptech %>
+    <%= f.label :Technology %><br>
+    <%= current_emp_login.emptech.techmaster_id %>
   </div>
   <div class="field">
-    <%= f.label :emp_login %><br>
-    <%= f.text_field :emp_login %>
+    <%= f.label :EmployeeId %><br>
+    <%= current_emp_login.emp_master.tcs_id %>
   </div>
   <div class="actions">
     <%= f.submit "Post"%>
