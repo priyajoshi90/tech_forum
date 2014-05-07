@@ -1,0 +1,59 @@
+<%= form_for([@forum, @forum.replies.build]) do |f| %>
+  <div class="field">
+    <%= f.label :name %><br />
+<% if current_emp_login_signed_in? -%>
+    <%= f.text_field :emp_login, :value => current_emp_login.emp_master.name, :readonly => :readonly %>
+<% else -%>
+    <%= f.text_field :emp_login %>
+<% end -%>
+  </div>
+  <div class="field">
+    <%= f.label :Reply %><br />
+    <%= f.text_area :answer, :size => "43x3" %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+
+
+<!-- 
+
+
+
+
+<%= form_for(@reply) do |f| %>
+  <% if @reply.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+
+      <ul>
+      <% @reply.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nestreply_id %><br>
+    <%= f.text_field :nestreply_id %>
+  </div>
+  <div class="field">
+    <%= f.label :answer %><br>
+    <%= f.text_field :answer %>
+  </div>
+  <div class="field">
+    <%= f.label :emp_login %><br>
+    <%= f.text_field :emp_login %>
+  </div>
+  <div class="field">
+    <%= f.label :forum %><br>
+    <%= f.text_field :forum %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+ -->

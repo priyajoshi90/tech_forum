@@ -40,6 +40,7 @@ class ForumsController < ApplicationController
     @forum = Forum.new(forum_params)
     @forum.emp_login = @emp_login
     @forum.emptech = @emptech
+    @forum.no_of_replies = 0.to_i
     if @forum.save
       #render :text => @forum.question
       redirect_to root_path, notice: 'Post was successfully created.'

@@ -8,25 +8,19 @@
     <br /><br />
     <li><%= link_to 'View all Users',emp_logins_show_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'View Forum', '#' %><hr /></li>
+    <li><%= link_to 'View Forum', forums_url %><hr /></li>
     <br /><br />
   <% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
-    <li><%= link_to 'My Profile', '#' %><hr /></li>
+    <li><%= link_to 'New Post', emp_logins_forum_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
+    <li><%= link_to 'My Posts', emp_logins_forums_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'Apply Leave', '#' %><hr /></li>
+    <li><%= link_to 'New Discussion', '#' %><hr /></li>
     <br /><br />
-    <li><%= link_to 'Firm Projects', '#' %><hr /></li>
+    <li><%= link_to 'My Discussions', '#' %><hr /></li>
     <br /><br />
-    <!-- <li><%= link_to 'New Post', '#' %><hr /></li>
-    <br /><br />
-    <li><%= link_to 'My Posts', '#' %><hr /></li>
-    <br /><br />
-    <li><%= link_to 'New Reply', '#' %><hr /></li>
+<!--     <li><%= link_to 'Forum', '#' %><hr /></li>
     <br /><br /> -->
-    <li><%= link_to 'Forum', '#' %><hr /></li>
-    <br /><br />
   <% end %> 
 
 <% else -%>
@@ -48,7 +42,7 @@
       <tr>
         <td><%= forum.qid %></td>
         <td><%= forum.question %></td>
-        <td><%= forum.type %></td>
+        
         <td><%= forum.emptech %></td>
         <td><%= forum.emp_login %></td>
         <td><%= link_to 'Show', forum %></td>

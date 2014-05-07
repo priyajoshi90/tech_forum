@@ -8,6 +8,7 @@ class EmpLogin < ActiveRecord::Base
  has_many :leaves
  has_one :emptech
  has_many :forums
+ has_many  :replies
   
  def self.search(search, page)
   paginate :per_page => 5, :page => page

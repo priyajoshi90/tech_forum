@@ -1,4 +1,6 @@
 Techforum::Application.routes.draw do
+ 
+
   resources :techmaster do
     resources :emptech
   end
@@ -7,7 +9,9 @@ Techforum::Application.routes.draw do
   resources :wfhs
   resources :leaves
   resources :emptech 
-  resources :forums   
+  resources :forums do
+   resources :replies
+   end  
   end
 
   devise_scope :emp_login do
@@ -20,6 +24,7 @@ Techforum::Application.routes.draw do
     put '/emp_logins', to: 'registration#update', as: 'update_emp_login_registration'
     get '/emp_logins/forum' => 'forums#new'
     post '/emp_logins/forum' => 'forums#create'
+    get '/emp_logins/forums' => 'forums#index'
 
     # get '/wfhs'
   end

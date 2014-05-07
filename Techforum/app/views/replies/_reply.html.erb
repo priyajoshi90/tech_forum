@@ -1,0 +1,1 @@
+<div><strong><%= reply.emp_login %>:</strong>&nbsp;<%= reply.answer %><% if emp_login_signed_in? -%><% if current_emp_login.id.to_s.eql?(reply.forum.emp_login_id.to_s) -%>&nbsp;&nbsp;<%= link_to 'Delete', [reply.forum, answer], method: :delete, data: { confirm: 'Are you sure?' } %><% end -%><% end -%></div><br />
