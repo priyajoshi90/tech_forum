@@ -8,25 +8,23 @@
     <br /><br />
     <li><%= link_to 'View all Users',emp_logins_show_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'View Forum', forums_url %><hr /></li>
+    <li><%= link_to 'View Forum', emp_logins_forums_url %><hr /></li>
     <br /><br />
   <% elsif (emp_login_signed_in? && current_emp_login.emp_master.role.eql?('normal')) %>
-    <li><%= link_to 'New Post', emp_logins_forum_url %><hr /></li>
+    <li><%= link_to 'My Profile', view_emp_login_registration_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'My Posts', emp_logins_forums_url %><hr /></li>
+    <li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'New Discussion', '#' %><hr /></li>
+    <li><%= link_to 'Apply Leave', emp_logins_leave_url %><hr /></li>
     <br /><br />
-    <li><%= link_to 'My Discussions', '#' %><hr /></li>
+    <li><%= link_to 'Firm Projects', '#' %><hr /></li>
     <br /><br />
-<!--     <li><%= link_to 'Forum', '#' %><hr /></li>
-    <br /><br /> -->
+    <li><%= link_to 'Forum', emp_logins_forums_url %><hr /></li>
+    <br /><br />
   <% end %> 
 
 <% else -%>
-<li><%= link_to 'View Forum', '#' %><hr /></li>
-<!-- <br /><br />
-<li><%= link_to 'View Discussions', '#' %><hr /></li> -->
+<li><%= link_to 'View Forum', emp_logins_forums_url %><hr /></li>
 <br /><br />
 <li><%= link_to 'Sign In', new_emp_login_session_path %><hr /></li>
 <% end %>
@@ -35,28 +33,34 @@
 <div class = 'rightnav'>
 <div class='main'>
   <p id="notice"><%= notice %></p>
-  <% if emp_login_signed_in? and @forums != nil %>
     <table>
+    <theader>
+	<th>Question</th>
+	<th>Forum Type</th>
+	<th>Emp Id</th>
+	<th>Show</th>
+	<th>Edit</th>
+	<th>Destroy</th>
     <tbody>
     <% @forums.each do |forum| %>
       <tr>
-        <td><%= forum.qid %></td>
         <td><%= forum.question %></td>
-        
-        <td><%= forum.emptech %></td>
-        <td><%= forum.emp_login %></td>
-        <td><%= link_to 'Show', forum %></td>
-        <td><%= link_to 'Edit', edit_forum_path(forum) %></td>
-        <td><%= link_to 'Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= forum.forum_type %></td>
+        <td><%= forum.emp_login.emp_master.tcs_id %></td>
+        <td><%= link_to 'Show', show_emp_logins_forum_path(forum.id) %></td>
+	<% if emp_login_signed_in? %>
+        <td><%= link_to 'Edit', '#' %></td>
+        <td><%= link_to 'Destroy', method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	<% end %>
       </tr>
     <% end %>
   </tbody>
   </table>   
-  <% end %>
 </div>
-
+<% if emp_login_signed_in? %>
   <br />
-  <%= link_to 'New Post', new_forum_path %>
+  <%= link_to 'New Post', emp_logins_forum_path %>
+<% end %>
 </div>
 </div>
 

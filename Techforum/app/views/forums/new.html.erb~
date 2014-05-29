@@ -1,17 +1,16 @@
 <div id='wel'><h2 align='center' style="color:#2781BA">Welcome to the TechForum!</h2><hr id='welcome'/></div>
 <div class='leftnav'>
 <ul>
-<li><%= link_to 'My Profile', '#' %><hr /></li>
-		<br /><br />
-		<li><%= link_to 'Apply WFH', '#' %><hr /></li>
-		<br /><br />
-		<li><%= link_to 'Apply Leave', '#' %><hr /></li>
-		<br /><br />
-		<li><%= link_to 'Firm Projects', '#' %><hr /></li>
-		<br /><br />
-		<li><%= link_to 'Forum', '#' %><hr /></li>
-		<br /><br />
-		<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+    <li><%= link_to 'My Profile', view_emp_login_registration_url %><hr /></li>
+    <br /><br />
+    <li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
+    <br /><br />
+    <li><%= link_to 'Apply Leave', emp_logins_leave_url %><hr /></li>
+    <br /><br />
+    <li><%= link_to 'Firm Projects', '#' %><hr /></li>
+    <br /><br />
+    <li><%= link_to 'Forum', emp_logins_forum_url %><hr /></li>
+    <br /><br />
 </ul>
 </div>
 <div class='rightnav'>

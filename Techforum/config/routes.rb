@@ -25,14 +25,17 @@ Techforum::Application.routes.draw do
     get '/emp_logins/forum' => 'forums#new'
     post '/emp_logins/forum' => 'forums#create'
     get '/emp_logins/forums' => 'forums#index'
-
+    get '/emp_logins/edit/:id' => 'registration#edit', as: 'edit1_emp_login_registration'
+    get '/emp_logins/forums/show/:id' => 'forums#show', as: 'show_emp_logins_forum'
+    post '/emp_logins/forums/show/:id' => 'replies#create', as: 'new_forum_replies'
+    delete '/emp_logins/forums' => 'forums#destroy', as: 'del_emp_logins_forums'
     # get '/wfhs'
   end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-   root 'home#index'
+   root 'forums#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

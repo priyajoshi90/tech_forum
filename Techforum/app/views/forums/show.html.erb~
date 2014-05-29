@@ -35,6 +35,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Qid:</strong>
+  <%= @forum.qid %>
+</p>
+
+<p>
   <strong>Question:</strong>
   <%= @forum.question %>
 </p>

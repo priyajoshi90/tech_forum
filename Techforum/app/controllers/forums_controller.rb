@@ -19,6 +19,8 @@ class ForumsController < ApplicationController
   # GET /forums/1.json
   def show
     @forum = Forum.find(params[:id])
+    @reply = Reply.new
+    @emptech = Emptech.new
   end
 
   # GET /forums/new
@@ -36,12 +38,13 @@ class ForumsController < ApplicationController
   # POST /forums.json
   def create
     @emp_login = current_emp_login
-    @emptech = Emptech.new(emptech_params)
+    @emptech = @emp_login.empteches.create(emptech_params)
     @forum = Forum.new(forum_params)
     @forum.emp_login = @emp_login
     @forum.emptech = @emptech
+    
     @forum.no_of_replies = 0.to_i
-    if @forum.save
+    if @forum.save && @emptech.save
       #render :text => @forum.question
       redirect_to root_path, notice: 'Post was successfully created.'
     else
@@ -66,7 +69,7 @@ class ForumsController < ApplicationController
   def destroy
     @forum.destroy
     respond_to do |format|
-      format.html { redirect_to forums_url }
+      format.html { redirect_to del_emp_logins_forums_url }
       format.json { head :no_content }
     end
   end
@@ -75,12 +78,13 @@ class ForumsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_forum
       @forum = Forum.find(params[:id])
+      @emptech = Emptech.find(params[:id])
     end
     # Never trust parameters from the scary internet, only allow the white list through.
     def emptech_params
       params.require(:emptech).permit(:empid, :techmaster_id, :emp_login_id) if params[:emptech]
     end
     def forum_params
-      params.require(:forum).permit(:qid, :question, :forum_type, :emptech_id, :emp_login_id) if params[:forum]
+      params.require(:forum).permit(:question, :forum_type, :emptech_id, :emp_login_id) if params[:forum]
     end
 end

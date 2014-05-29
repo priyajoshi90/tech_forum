@@ -15,13 +15,13 @@ $(function() {
 <br /><br />
 <li><%= link_to 'Apply WFH', emp_logins_wfh_url %><hr /></li>
 <br /><br />
-<li><%= link_to 'Apply Leave', '#' %><hr /></li>
+<li><%= link_to 'Apply Leave', emp_logins_leave_url %><hr /></li>
 <br /><br />
 <li><%= link_to 'Firm Projects', '#' %><hr /></li>
 <br /><br />
-<li><%= link_to 'Forum', '#' %><hr /></li>
+<li><%= link_to 'Forum', emp_logins_forum_url %><hr /></li>
 <br /><br />
-<li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
+
 </ul>
 </div>
 <div class='rightnav'>

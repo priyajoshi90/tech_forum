@@ -36,6 +36,7 @@ def fetch(emp_login,emp_master)
 @emp_master.dor = params[:emp_master][:dor]
 @emp_master.mobile = params[:emp_master][:mobile]
 @emp_master.address = params[:emp_master][:address]
+@emp_master.tech = params[:emp_master][:tech]
 # @emp_login.valid?
 # if @emp_login.errors.blank?
 
@@ -76,7 +77,7 @@ def view
 		#render :text => @emp_login.email
 end
 def edit
-		@emp_login = current_emp_login
+		@emp_login = EmpLogin.find(params[:id])
 end
 def update
 		@emp_login =  EmpLogin.new
@@ -98,7 +99,7 @@ def update_emp_login(emp_login, emp_master)
 
 
 			if @emp_master.errors.blank?
-				if EmpMaster.update(@emp_master.id, :name => @emp_master.name, :tcs_id => @emp_master.tcs_id, :fm_no => @emp_master.fm_no, :address => @emp_master.address, :mobile => @emp_master.mobile, :birthday => @emp_master.birthday, :doj => @emp_master.doj, :dor => @emp_master.dor, :role => @emp_master.role) and @emp_login.update_attribute(:encrypted_password, @emp_login.password)
+				if EmpMaster.update(@emp_master.id, :name => @emp_master.name, :tcs_id => @emp_master.tcs_id, :fm_no => @emp_master.fm_no, :address => @emp_master.address, :mobile => @emp_master.mobile, :birthday => @emp_master.birthday, :doj => @emp_master.doj, :dor => @emp_master.dor, :role => @emp_master.role, :tech => @emp_master.tech) and @emp_login.update_attribute(:encrypted_password, @emp_login.password)
 					redirect_to show_emp_login_registration_url(@emp_login), notice: "Employee details and password updated successfully"
 				else
 					redirect_to view_emp_login_registration_url(@emp_login), notice: "Couldn't update employee details"				
@@ -108,7 +109,7 @@ def update_emp_login(emp_login, emp_master)
 			end
 		elsif @emp_master.emp_login.password.eql?("")
 			if @emp_master.errors.blank?
-				if EmpMaster.update(@emp_master.id, :name => @emp_master.name, :tcs_id => @emp_master.tcs_id, :fm_no => @emp_master.fm_no, :address => @emp_master.address, :mobile => @emp_master.mobile, :birthday => @emp_master.birthday, :doj => @emp_master.doj, :dor => @emp_master.dor, :role => @emp_master.role)
+				if EmpMaster.update(@emp_master.id, :name => @emp_master.name, :tcs_id => @emp_master.tcs_id, :fm_no => @emp_master.fm_no, :address => @emp_master.address, :mobile => @emp_master.mobile, :birthday => @emp_master.birthday, :doj => @emp_master.doj, :dor => @emp_master.dor, :role => @emp_master.role, :tech => @emp_master.tech)
 					redirect_to root_url(@emp_login), notice: "Employee details updated successfully"
 				else
 					redirect_to view_emp_login_registration_url(@emp_login), notice: "Couldn't update employee details"

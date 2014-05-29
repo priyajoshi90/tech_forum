@@ -17,19 +17,17 @@ $(function() {
 <br /><br />
 <li><%= link_to 'View Forum', '#'%><hr /></li>
 <br /><br />
-<!-- <li><%= link_to 'View all Discussions', '#' %><hr /></li>
-<br /><br />
- --><li><%= link_to 'Sign Out', destroy_emp_login_session_url, method: :delete %><hr /></li>
 </ul>
 </div>
 <div class='rightnav'>
 <div align='center' class='regForm'>
 <%= form_tag(emp_login_registration_url, :method => 'post') %>
-<sup align='center'><%= devise_error_messages! %></sup>
+<sup align='center'><%= devise_error_messages! %><%= error_messages_for :emp_master %></sup>
 <table align='center' cellspacing='10px' cellpadding='5px' border='0px'>
 <tr><td>Name:</td><td><%= text_field(:emp_master, :name, :autofocus => true) %></td></tr>
 <tr><td>TCS Id:</td><td><%= text_field(:emp_master, :tcs_id) %></td></tr>
 <tr><td>FM No:</td><td><%= text_field(:emp_master, :fm_no) %></td></tr>
+<tr><td>Technology:</td><td><%= text_field(:emp_master, :tech) %></td></tr>
 <tr><td>Address:</td><td><%= text_area(:emp_master, :address, :rows => '4', :cols => '19') %></td></tr>
 <tr><td>Mobile:</td><td><%= text_field(:emp_master, :mobile) %></td></tr>
 <tr><td>Birthday:</td><td><input type='text' class='datepicker' name='emp_master[birthday]' readonly='readonly' /></td></tr>
