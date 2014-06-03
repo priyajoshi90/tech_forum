@@ -1,5 +1,4 @@
 class Emptech < ActiveRecord::Base
+  belongs_to :emp_master
   belongs_to :techmaster
-  belongs_to :emp_login
-  has_many :forums
 end

@@ -13,7 +13,7 @@
     encoding: utf8
     database: TechForum
     pool: 5
-    username: root
+    username: TechForum
     password: root
     socket: /var/run/mysqld/mysqld.sock
 

@@ -3,21 +3,23 @@ class RegistrationController < Devise::RegistrationsController
 prepend_before_filter :require_no_authentication, :except => [ :index, :new, :create, :edit, :show, :view, :update, :wfh, :leave ]
 
 def new
- 	if emp_login_signed_in? && (current_emp_login.emp_master.role.eql?('admin'))
+ 	#if emp_login_signed_in? && (current_emp_login.emp_master.role.eql?('admin'))
 		@emp_login= EmpLogin.new
 		@emp_master = EmpMaster.new
-	else
-			redirect_to root_url , notice: 'You are not authorized to perform this action .'	
-	end
+		
+	#else
+			#redirect_to root_url , notice: 'You are not authorized to perform this action .'	
+	#end
 end
 def create
 		@emp_login = EmpLogin.new
 		@emp_master = EmpMaster.new
-		self.fetch(@emp_login, @emp_master)
-		self.save(@emp_login, @emp_master)
+		@emptech = Emptech.new
+		self.fetch(@emp_login, @emp_master, @emptech)
+		self.save(@emp_login, @emp_master, @emptech)
 
 end
-def fetch(emp_login,emp_master)
+def fetch(emp_login,emp_master,emptech)
 
 # @emp_login = EmpLogin.new
 @emp_login=emp_login
@@ -36,7 +38,8 @@ def fetch(emp_login,emp_master)
 @emp_master.dor = params[:emp_master][:dor]
 @emp_master.mobile = params[:emp_master][:mobile]
 @emp_master.address = params[:emp_master][:address]
-@emp_master.tech = params[:emp_master][:tech]
+@emptech.techmaster_id = params[:techmaster][:id]
+@emptech.emp_master_id = params[:emp_master][:tcs_id]
 # @emp_login.valid?
 # if @emp_login.errors.blank?
 
@@ -48,16 +51,23 @@ def fetch(emp_login,emp_master)
 # render :action => "new"
 # end
 end
-def save(emp_login,emp_master)
+def save(emp_login,emp_master,emptech)
 		@emp_login= emp_login
 		@emp_master= emp_master
+		@emptech = emptech
 		@emp_login.valid?
 		@emp_master.valid?
-		if @emp_login.errors.blank? and @emp_master.errors.blank?
+		@emptech.valid?
+		if @emp_login.errors.blank? and @emp_master.errors.blank? and @emptech.errors.blank?
 			@emp_login.save
 			@emp_master.emp_login = @emp_login		#Critical as initiates the reference between emp_login and emp_master models
+			@techmasters = Techmaster.where(:id => @emptech.emp_master_id)
+			@techmasters.each do techmaster
+				@emptech.techmaster = techmaster
+			end
+			#@emptech.techmasters = Techmaster.where(:id => @emptech.emp_master_id)
 			@emp_master.save
-			# redirect_to show_blogger_registration_url(@blogger), notice: "A new user named "+@detail.firstname+" "+@detail.lastname+" has been created successfully."
+			@emptech.save
 			redirect_to root_path
 		else
 			render :action => 'new'
