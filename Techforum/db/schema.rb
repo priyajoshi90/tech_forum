@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140603120007) do
+ActiveRecord::Schema.define(version: 20140611065125) do
 
   create_table "emp_logins", force: true do |t|
     t.string   "email",                  default: "", null: false
@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(version: 20140603120007) do
     t.integer  "emp_login_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "tech"
   end
 
   add_index "emp_masters", ["emp_login_id"], name: "index_emp_masters_on_emp_login_id", using: :btree

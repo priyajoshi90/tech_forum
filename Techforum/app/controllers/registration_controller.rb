@@ -78,8 +78,14 @@ def show
       #:per_page => 5)
        		
   		#@emp_logins = EmpLogin.search(params[:search], params[:page])
-		@emp_logins = EmpLogin.paginate page: params[:page],per_page: 5
-		
+		@emp_logins = EmpLogin.all
+		@techmasters = Techmaster.all		
+		@techmasters.each do |techmaster|
+			@empteches = Emptech.where(:techmaster_id => techmaster.id)
+			render :json => @empteches
+			return
+		end
+
 end
 def view
 		
