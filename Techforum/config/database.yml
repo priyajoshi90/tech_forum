@@ -14,7 +14,7 @@
     database: TechForum
     pool: 5
     #username: TechForum
-    password: root
+    password: qwerty
     socket: /var/run/mysqld/mysqld.sock
 
 # # # Warning: The database defined as "test" will be erased and

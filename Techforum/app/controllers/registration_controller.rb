@@ -79,12 +79,23 @@ def show
        		
   		#@emp_logins = EmpLogin.search(params[:search], params[:page])
 		@emp_logins = EmpLogin.all
-		@techmasters = Techmaster.all		
-		@techmasters.each do |techmaster|
-			@empteches = Emptech.where(:techmaster_id => techmaster.id)
-			render :json => @empteches
-			return
+		@techmasters = Techmaster.all
+		@empteches = Emptech.where(:techmaster_id => @techmasters.first.id)	
+		#render :json => @empteches
+		$counter = 0
+		@forums= Forum.all
+		@empteches.each do |emptech|
+			@forums = Forum.where(:emptech_id => emptech.id)
+			
+			$counter = $counter+1
 		end
+		#render :text => $counter
+		render :json => @forums	
+		#@techmasters.each do |techmaster|
+			#@empteches = Emptech.where(:techmaster_id => techmaster.id)
+			#render :json => @empteches
+			#return
+		#end
 
 end
 def view
